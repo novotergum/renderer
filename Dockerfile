@@ -1,10 +1,9 @@
-# Basisimage mit Chromium und allen Abhängigkeiten
-FROM mcr.microsoft.com/playwright:v1.42.0-focal
+FROM mcr.microsoft.com/playwright:v1.57.0-jammy
 
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm install --omit=dev
+RUN npm ci --omit=dev
 
 COPY . .
 
