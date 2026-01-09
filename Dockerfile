@@ -1,8 +1,12 @@
-FROM mcr.microsoft.com/playwright:v1.42.0-jammy
+# Basisimage mit Chromium und allen Abhängigkeiten
+FROM mcr.microsoft.com/playwright:v1.42.0-focal
+
 WORKDIR /app
-COPY package.json package-lock.json* ./
-RUN npm install
+
+COPY package*.json ./
+RUN npm install --omit=dev
+
 COPY . .
-ENV PORT=3000
-EXPOSE 3000
-CMD ["npm","start"]
+
+EXPOSE 8080
+CMD ["node", "index.js"]
