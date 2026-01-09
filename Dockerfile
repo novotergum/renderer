@@ -1,11 +1,15 @@
-FROM mcr.microsoft.com/playwright:v1.57.0-jammy
+# Basis-Image mit Playwright
+FROM mcr.microsoft.com/playwright:v1.45.3-focal
 
 WORKDIR /app
 
-COPY package*.json ./
+# Paketdefinitionen kopieren
+COPY package.json package-lock.json* ./
+
 RUN npm install --omit=dev
 
+# Code kopieren
 COPY . .
 
-EXPOSE 8080
-CMD ["node", "index.js"]
+# Startkommando
+CMD ["npm", "start"]
